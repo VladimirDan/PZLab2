@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33214.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PZLab2", "PZLab2\PZLab2.csproj", "{05193813-C097-4573-92A3-BA7464057021}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05193813-C097-4573-92A3-BA7464057021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05193813-C097-4573-92A3-BA7464057021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05193813-C097-4573-92A3-BA7464057021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05193813-C097-4573-92A3-BA7464057021}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F75E8229-6A98-4E9E-8ED1-654691FC5594}
+	EndGlobalSection
+EndGlobal
