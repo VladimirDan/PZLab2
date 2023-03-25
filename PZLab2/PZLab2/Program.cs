@@ -10,7 +10,7 @@ namespace PZLab2
         }
     }
 
-    class DoublyLinkedListNode
+    public class DoublyLinkedListNode
     {
         public char Value { get; set; }
         public DoublyLinkedListNode Next { get; set; }
@@ -22,7 +22,7 @@ namespace PZLab2
         }
     }
 
-    class DoublyLinkedList
+    public class DoublyLinkedList
     {
         private DoublyLinkedListNode _head;
         private DoublyLinkedListNode _tail;

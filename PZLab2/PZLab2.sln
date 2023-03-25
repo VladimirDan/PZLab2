@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33214.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PZLab2", "PZLab2\PZLab2.csproj", "{05193813-C097-4573-92A3-BA7464057021}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PZLab2", "PZLab2\PZLab2.csproj", "{05193813-C097-4573-92A3-BA7464057021}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PZLab2.Tests", "PZLab2.Tests\PZLab2.Tests.csproj", "{D5E619D9-69AD-4141-8623-C632F1A32E68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{05193813-C097-4573-92A3-BA7464057021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05193813-C097-4573-92A3-BA7464057021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05193813-C097-4573-92A3-BA7464057021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E619D9-69AD-4141-8623-C632F1A32E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E619D9-69AD-4141-8623-C632F1A32E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E619D9-69AD-4141-8623-C632F1A32E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E619D9-69AD-4141-8623-C632F1A32E68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
