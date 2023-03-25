@@ -173,6 +173,7 @@ namespace PZLab2
                         current.Previous.Next = current.Next;
                         current.Next.Previous = current.Previous;
                     }
+                    _length--;
                 }
                 current = current.Next;
             }
@@ -230,7 +231,7 @@ namespace PZLab2
         public int FindLast(char value)
         {
             DoublyLinkedListNode current = this._tail;
-            for (int i = this._length - 1; i <= 0; i--)
+            for (int i = this._length - 1; i >= 0; i--)
             {
                 if (current.Value == value) return i;
                 current = current.Previous;
@@ -248,7 +249,7 @@ namespace PZLab2
         public void Extend(DoublyLinkedList list)
         {
             DoublyLinkedListNode current = list._head;
-            for (int i = 0; i < this._length; i++)
+            for (int i = 0; i < list._length; i++)
             {
                 this.Append(current.Value);
                 current = current.Next;
