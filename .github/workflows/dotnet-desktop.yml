@@ -16,4 +16,4 @@ jobs:
     - name: Build
       run: dotnet build PZLab2 --no-restore
     - name: Test
-      run: dotnet test PZLab2.Tests --no-build --verbosity normal
+      run: dotnet test PZLab2 --no-build --verbosity normal
