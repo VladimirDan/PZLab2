@@ -11,18 +11,6 @@ namespace PZLab2
         }
     }
 
-    /*public class DoublyLinkedListNode
-    {
-        public char Value { get; set; }
-        public DoublyLinkedListNode Next { get; set; }
-        public DoublyLinkedListNode Previous { get; set; }
-
-        public DoublyLinkedListNode(char value)
-        {
-            Value = value;
-        }
-    }*/
-
     public class DoublyLinkedList
     {
         private LinkedList<char> list;
@@ -34,7 +22,7 @@ namespace PZLab2
 
         public int ListLength()
         {
-            return list.Count;
+            return list.Lenght;
         }
 
         public void Append(char value)
