@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PZLab2
 {
@@ -10,7 +11,7 @@ namespace PZLab2
         }
     }
 
-    public class DoublyLinkedListNode
+    /*public class DoublyLinkedListNode
     {
         public char Value { get; set; }
         public DoublyLinkedListNode Next { get; set; }
@@ -20,160 +21,85 @@ namespace PZLab2
         {
             Value = value;
         }
-    }
+    }*/
 
     public class DoublyLinkedList
     {
-        private DoublyLinkedListNode _head;
-        private DoublyLinkedListNode _tail;
-        private int _length;
+        private LinkedList<char> list;
 
         public DoublyLinkedList()
         {
-            _head = null;
-            _tail = null;
-            _length = 0;
+            list = new LinkedList<char>();
         }
 
         public int ListLength()
         {
-            return this._length;
+            return list.Count;
         }
 
         public void Append(char value)
         {
-            DoublyLinkedListNode newNode = new DoublyLinkedListNode(value);
-
-            if (_head == null)
-            {
-                _head = newNode;
-                _tail = newNode;
-            }
-            else
-            {
-                newNode.Previous = _tail;
-                _tail.Next = newNode;
-                _tail = newNode;
-            }
-
-            _length++;
+            LinkedListNode<char> newNode = new LinkedListNode<char>(value);
+            list.AddLast(newNode);
         }
 
         public void Insert(char value, int index)
         {
-            if (index < 0 || index > _length)
+            if (index < 0 || index > list.Count)
             {
                 throw new IndexOutOfRangeException("Index out of range.");
             }
 
-            DoublyLinkedListNode newNode = new DoublyLinkedListNode(value);
+            LinkedListNode<char> newNode = new LinkedListNode<char>(value);
 
-            if (_head == null)
+            if (index == 0)
             {
-                _head = newNode;
-                _tail = newNode;
+                list.AddFirst(newNode);
             }
-            else if (index == 0)
+            else if (index == list.Count)
             {
-                newNode.Next = _head;
-                _head.Previous = newNode;
-                _head = newNode;
-            }
-            else if (index == _length)
-            {
-                _tail.Next = newNode;
-                newNode.Previous = _tail;
-                _tail = newNode;
+                list.AddLast(newNode);
             }
             else
             {
-                DoublyLinkedListNode current = _head;
-
-                for (int i = 0; i < index - 1; i++)
+                LinkedListNode<char> current = list.First;
+                for (int i = 0; i < index - 2; i++)
                 {
                     current = current.Next;
                 }
-
-                newNode.Next = current.Next;
-                newNode.Previous = current;
-                current.Next.Previous = newNode;
-                current.Next = newNode;
+                list.AddAfter(current, newNode);
             }
-            _length++;
         }
 
         public char Delete(int index)
         {
-            if (index < 0 || index >= _length)
+            if (index < 0 || index >= list.Count)
             {
                 throw new IndexOutOfRangeException("Index out of range.");
             }
 
-            char data;
+            LinkedListNode<char> current = list.First;
 
-            if (_length == 1)
+            for (int i = 0; i < index; i++)
             {
-                data = _head.Value;
-                _head = null;
-                _tail = null;
-            }
-            else if (index == 0)
-            {
-                data = _head.Value;
-                _head = _head.Next;
-                _head.Previous = null;
-            }
-            else if (index == _length - 1)
-            {
-                data = _tail.Value;
-                _tail = _tail.Previous;
-                _tail.Next = null;
-            }
-            else
-            {
-                DoublyLinkedListNode current = _head;
-
-                for (int i = 0; i < index; i++)
-                {
-                    current = current.Next;
-                }
-
-                data = current.Value;
-                current.Previous.Next = current.Next;
-                current.Next.Previous = current.Previous;
+                current = current.Next;
             }
 
-            _length--;
-
+            char data = current.Value;
+            list.Remove(current);
             return data;
         }
 
         public void DeleteAll(char element)
         {
-            DoublyLinkedListNode current = _head;
+            LinkedListNode<char> current = list.First;
             while (current != null)
             {
                 if (current.Value.Equals(element))
                 {
-                    if (current == _head)
-                    {
-                        _head = current.Next;
-                        if (_head != null)
-                        {
-                            _head.Previous = null;
-                        }
-                    }
-                    else if (current == _tail)
-                    {
-                        _tail = current.Previous;
-                        _tail.Next = null;
-                    }
-                    else
-                    {
-                        current.Previous.Next = current.Next;
-                        current.Next.Previous = current.Previous;
-                    }
-                    _length--;
+                    current = current.Next;
+                    list.Remove(current.Previous);
+                    continue;
                 }
                 current = current.Next;
             }
@@ -181,8 +107,11 @@ namespace PZLab2
 
         public char Get(int index)
         {
-            if (index < 0 || index >= this._length) throw new Exception("Error. Index out of range.");
-            DoublyLinkedListNode current = this._head;
+            if (index < 0 || index >= list.Count)
+                throw new Exception("Error. Index out of range.");
+
+            LinkedListNode<char> current = list.First;
+
             for (int i = 0; i < index; i++)
             {
                 current = current.Next;
@@ -193,8 +122,8 @@ namespace PZLab2
         public DoublyLinkedList Clone()
         {
             DoublyLinkedList newList = new DoublyLinkedList();
-            DoublyLinkedListNode current = this._head;
-            for (int i = 0; i < this._length; i++)
+            LinkedListNode<char> current = list.First;
+            for (int i = 0; i < list.Count; i++)
             {
                 newList.Append(current.Value);
                 current = current.Next;
@@ -204,23 +133,19 @@ namespace PZLab2
 
         public void Reverse()
         {
-            DoublyLinkedListNode current = this._head;
-            DoublyLinkedListNode previous = this._tail;
-            for (int i = 0; i < this._length; i++)
+            LinkedList<char> newList = new LinkedList<char>();
+            while (list.Count != 0)
             {
-                DoublyLinkedListNode next = current.Next;
-                current.Next = previous;
-                previous = current;
-                current = next;
+                newList.AddLast(new LinkedListNode<char>(list.Last.Value));
+                list.RemoveLast();
             }
-            this._head = previous;
-            if (this._length > 0) this._tail = this._head.Next;
+            list = newList;
         }
 
         public int FindFirst(char value)
         {
-            DoublyLinkedListNode current = this._head;
-            for (int i = 0; i < this._length; i++)
+            LinkedListNode<char> current = list.First;
+            for (int i = 0; i < list.Count; i++)
             {
                 if (current.Value == value) return i;
                 current = current.Next;
@@ -230,8 +155,8 @@ namespace PZLab2
 
         public int FindLast(char value)
         {
-            DoublyLinkedListNode current = this._tail;
-            for (int i = this._length - 1; i >= 0; i--)
+            LinkedListNode<char> current = list.Last;
+            for (int i = list.Count - 1; i >= 0; i--)
             {
                 if (current.Value == value) return i;
                 current = current.Previous;
@@ -241,15 +166,13 @@ namespace PZLab2
 
         public void Clear()
         {
-            this._head = null;
-            this._tail = null;
-            this._length = 0;
+            list.Clear();
         }
 
-        public void Extend(DoublyLinkedList list)
+        public void Extend(DoublyLinkedList doublyLinkedList)
         {
-            DoublyLinkedListNode current = list._head;
-            for (int i = 0; i < list._length; i++)
+            LinkedListNode<char> current = doublyLinkedList.list.First;
+            for (int i = 0; i < doublyLinkedList.list.Count; i++)
             {
                 this.Append(current.Value);
                 current = current.Next;
