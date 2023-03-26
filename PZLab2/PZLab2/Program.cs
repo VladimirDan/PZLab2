@@ -22,7 +22,7 @@ namespace PZLab2
 
         public int ListLength()
         {
-            return list.Lenght;
+            return list.Count;
         }
 
         public void Append(char value)
@@ -51,7 +51,7 @@ namespace PZLab2
             else
             {
                 LinkedListNode<char> current = list.First;
-                for (int i = 0; i < index - 2; i++)
+                for (int i = 0; i < index - 1; i++)
                 {
                     current = current.Next;
                 }
