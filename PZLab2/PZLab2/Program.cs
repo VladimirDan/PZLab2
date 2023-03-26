@@ -55,7 +55,7 @@ namespace PZLab2
                 {
                     current = current.Next;
                 }
-                list.AddAfter(current.Previous, newNode);
+                list.AddAfter(current, newNode);
             }
         }
 
